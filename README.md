@@ -19,7 +19,7 @@ A common approach is to place functions, classes, or other related code into mod
 
 Whenever you are creating a new Python project, it is best to stay organized by placing all the files related to the project in the same folder. This is especially true for this activity. Be sure to create a folder named `root`.
 
-Inside the folder, create a new `main.py` file. **You will also create a file called `utils.py`.** *Please make sure for this activity that your file names are exactly the same as these.*
+Inside the folder, create a new `root/main.py` file. **You will also create a file called `root/utils.py`.** *Please make sure for this activity that your file names are exactly the same as these.*
 
 ## 2. Planning Out the Game
 
@@ -29,15 +29,15 @@ Here we have some functions outlined in a flowchart for the logic behind the num
 
 Overall we need a program that generates one random number at the start, then has a continuous loop for comparing an input guess to the value of the number that repeats until the number is guessed! Additionally, there is a validation function to ensure the correct type of data is being processed.
 
-## 3. Adding Code to `utils.py`
+## 3. Adding Code to `root/utils.py`
 
 While this project is still relatively small compared to others you will complete in this course, organizing different parts of your code into different files will make it much easier to debug and plan your programs. 
 
-For this project, we can keep our main function fairly simple, and put most of the logic into our `utils.py` file. Here is one way it could be divided:
+For this project, we can keep our main function fairly simple, and put most of the logic into our `root/utils.py` file. Here is one way it could be divided:
 
 ![Split number guessing game flowchart](./split-number-guessing-game.webp)
 
-This means that we can build out `utils.py` like this:
+This means that we can build out `root/utils.py` like this:
 
 Import the random module because we need random number generation:
 
@@ -113,17 +113,18 @@ for _ in range(3):
     check_user_guess(number_to_print)
 ```
 
-When we run our code, we should get a pretty clear idea of whether or not it works. At this point, we can move on to creating our actual game in `main.py`
+When we run our code, we should get a pretty clear idea of whether or not it works. At this point, we can move on to creating our actual game in `root/main.py`
 
-## 4. Importing to `main.py`
+## 4. Importing to `root/main.py`
 
-If we want to actually use these functions we have created, we can import `utils.py` directly into `main.py`:
+If we want to actually use these functions we have created, we can import `root/utils.py` directly into `root/main.py`:
 
 ```python main.py
-import utils
+
+from root import utils
 ```
 
-With that we can use the `utils.py` functions through the `utils` namespace:
+With that we can use the `root/utils.py` functions through the `utils` namespace:
 
 ```python main.py
 secret_number = utils.generate_secret_number()
@@ -135,12 +136,12 @@ while True:
 
 This code will work just fine, but usually when you are creating your own modules, you want them imported directly into the main file's namespace.
 
-## 5. Importing Directly into the `main.py` Namespace
+## 5. Importing Directly into the `root/main.py` Namespace
 
-To import them directly into `main.py`'s namespace, we can use the following code:
+To import them directly into `root/main.py`'s namespace, we can use the following code:
 
 ```python main.py
-from utils import generate_secret_number, check_user_guess
+from root.utils import generate_secret_number, check_user_guess
 
 secret_number = generate_secret_number()
 
@@ -149,7 +150,7 @@ while True:
         break
 ```
 
-Time to run our `main.py` file and see how it works!
+Time to run our `root/main.py` file and see how it works!
 
 Oh no! We get all of the `print()` statements from our other file!
 
@@ -170,16 +171,16 @@ Your next instinct might be to comment the test code out. In many projects howev
 
 Fortunately, Python has a built-in solution! Whenever a file is run as the main file being run (i.e. hitting the play button on a file in PyCharm or VS Code), it is given a value for a hidden property called `__name__`. This value is always set to `"__main__"` for the main file being run. This means that you can prevent test code from running by placing it in a selection control structure that only runs when it's the main file!
 
-Above your test code in `utils.py` add the following selection control structure:
+Above your test code in `root/utils.py` add the following selection control structure:
 
 ```python utils.py
 if __name__ == "__main__":
     # Test code for a module goes here
 ```
 
-Then try running `utils.py`. You'll notice that it still runs like normal!
+Then try running `root/utils.py`. You'll notice that it still runs like normal!
 
-Now try running `main.py`. You'll notice that now it doesn't output all of the extra information from `utils.py`!
+Now try running `root/main.py`. You'll notice that now it doesn't output all of the extra information from `root/utils.py`!
 
 Including `if __name__ == "__main__"` for test code is a standard practice when creating Python modules and is expected to be used.
 
@@ -193,6 +194,6 @@ Extend the Number Guessing Game by adding a second module that manages the playe
 * The player starts with **100 points** and loses **10 points for every incorrect guess**. The score cannot go below `0`.
 * Create a function in `score.py` that accepts the **current score** and returns the new score after an incorrect guess.
 * Create a second function in `score.py` that accepts the **final score** and returns a rating: **80–100 = `"Excellent"`, 50–79 = `"Good"`, and 0–49 = `"Keep Practicing"`**.
-* Import both functions into `main.py`. When the player correctly guesses the number, display their **final score and rating**.
+* Import both functions into `root/main.py`. When the player correctly guesses the number, display their **final score and rating**.
 * Program appropriately uses `__name__ == "__main__"` to prevent data from contaminating programs in other files.
 
