@@ -11,17 +11,24 @@ while True:
     else:
         Number_score = score.lose_points(Number_score)
 
-secret_number = utils.generate_secret_number()
+points_accepting = score.points_accepting(Number_score)
 
-while True:
-    if utils.check_user_guess(secret_number):
-        break
+# secret_number = utils.generate_secret_number()
+#
+# while True:
+#     if utils.check_user_guess(secret_number):
+#         break
+#     else:
+#         points_accepting = score.points_accepting(Number_score)
+#
+# from root.utils import generate_secret_number, check_user_guess
+#
+# points_accepting = score.points_accepting(Number_score)
+#
+# secret_number = generate_secret_number()
+#
+# while True:
+#     if check_user_guess(secret_number):
+#         break
 
-from root.utils import generate_secret_number, check_user_guess
-
-secret_number = generate_secret_number()
-
-while True:
-    if check_user_guess(secret_number):
-        break
 

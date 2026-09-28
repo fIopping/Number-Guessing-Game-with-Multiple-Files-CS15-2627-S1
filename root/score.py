@@ -1,6 +1,4 @@
-import main
 
-main.Number_score = 100
 
 def lose_points(points):
     points -= 10
@@ -9,12 +7,12 @@ def lose_points(points):
     return points
 
 def points_accepting(points):
-    if points >= 0:
-        print("Keep Practicing!")
+    if points >= 80:
+        print("Excellent!")
     elif points >= 50:
         print("Good!")
-    elif points >= 80:
-         print("Excellent!")
+    elif points >= 0:
+        print("Keep Practicing!")
         
 
 
