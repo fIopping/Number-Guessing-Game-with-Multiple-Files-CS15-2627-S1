@@ -17,7 +17,7 @@ def points_accepting(points):
     elif points >= 50:
         print("Good!")
     else points >= 80:
-        print("Excellent!")
+         print("Excellent!")
 
 
 
